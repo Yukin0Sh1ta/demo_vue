@@ -17,7 +17,10 @@
         justify="center"
       >
         <el-col :span="8">
-          <div class="grid-content ep-bg-purple" />
+          <div
+            class="grid-content ep-bg-purple"
+            draggable="false"
+          />
           <el-text
             class="qrcode selectNone"
             size="large"
@@ -28,7 +31,7 @@
           <vue-qrcode
             :value="qrCodeValue"
             :width="200"
-            :type="'square'"
+            type='image/jpeg'
             draggable="false"
             :color="{ dark: '#000000', light: '#ffffff' }"
             class="selectNone"
@@ -256,8 +259,6 @@ const form = ref({
   code: "",
 });
 
-// const { name, password, phone, code } = form.value;
-
 //el表单基本验证
 const rules = ref({
   password: [{ required: true, message: "密码不能为空！" }],
@@ -318,6 +319,8 @@ const submitForm = async () => {
         form.value.password === userPwd
       ) {
         ElMessage.success("登录成功！欢迎用户" + form.value.name);
+        // console.log(dialogFormVisible.value);
+        dialogFormVisible.value = false;
       }
     }
   } catch (err) {
@@ -325,7 +328,7 @@ const submitForm = async () => {
       const errorMessage = err.response.data?.message || "系统出错，请稍后再试";
       ElMessage.error(`请求失败: ${err.response.status} - ${errorMessage}`);
     } else {
-      ElMessage.error("请求失败，请检查网络连接！");
+      // ElMessage.error("请求失败，请检查网络连接！");
     }
   }
 };
