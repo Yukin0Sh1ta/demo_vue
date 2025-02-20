@@ -9,14 +9,19 @@ const router = createRouter({
       component: () => import("./view/Main.vue"),
     },
     {
-      path: "/login",
-      name: "Login",
-      component: () => import("./view/Login.vue"),
-    },
-    {
       path: "/person",
       name: "Person",
       component: () => import("./view/Person.vue"),
+    },
+    {
+      path: "/head",
+      name: "Head",
+      component: () => import("./components/Head.vue"),
+    },
+    {
+      path: "/body",
+      name: "Body",
+      component: () => import("./components/Body.vue"),
     },
   ],
 });

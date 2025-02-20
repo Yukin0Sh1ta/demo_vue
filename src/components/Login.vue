@@ -3,8 +3,9 @@
     <el-button
       plain
       @click="dialogFormVisible = true"
+      style="background-color: #FF69B4;border: 0;"
     >
-      登录
+      <span :style="showFixHeader ? 'color:black' : 'color:white' ">登录</span>
     </el-button>
 
     <el-dialog
@@ -234,7 +235,7 @@
 </template>
 
 <script setup>
-import { ref, nextTick, toRaw } from "vue";
+import { ref, nextTick, toRaw, onMounted } from "vue";
 import { ElMessage } from "element-plus";
 import axios from "axios";
 
@@ -269,6 +270,24 @@ const rules = ref({
   ],
   code: [{ required: true, message: "验证码不能为空！" }],
 });
+
+onMounted(() => {
+  window.addEventListener("scroll", scrollEvent);
+});
+
+const showFixHeader = ref(false);
+/**
+ * @description: 滚动事件
+ */
+const scrollEvent = () => {
+  // 获取滚动高度
+  var scrollTop = window.scrollY;
+  if (scrollTop > 20) {
+    showFixHeader.value = true;
+  } else {
+    showFixHeader.value = false;
+  }
+};
 
 const pwdChange = () => {
   pwdNum.value = 1;
@@ -370,6 +389,9 @@ const submitForm = async () => {
   cursor: pointer;
   font-size: 18px;
 }
+/* .el-button span {
+  color: white;
+} */
 .pwd-button,
 .reg-button {
   width: 140px;

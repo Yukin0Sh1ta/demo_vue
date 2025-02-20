@@ -1,19 +1,17 @@
 <template>
-  <div class="head">
-    <input
-      type="text"
-      id="input"
-      placeholder="想追的番"
-      class="input"
-      v-model="inputValue"
-    >
-    <button
-      @click="add"
-      class="submit"
-      id="submit"
-    >添加
-    </button>
-  </div>
+  <input
+    type="text"
+    id="input"
+    placeholder="想追的番"
+    class="input"
+    v-model="inputValue"
+  >
+  <button
+    @click="add"
+    class="submit"
+    id="submit"
+  >添加
+  </button>
 
   <div class="grid-container">
     <div
@@ -38,12 +36,25 @@
     <RouterLink to="/person">
       <button>gotoperson</button>
     </RouterLink>
+    <RouterLink to="/head">
+      <button>gotohead</button>
+    </RouterLink>
+    <RouterLink to="/body">
+      <button>gotobody</button>
+    </RouterLink>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import Head from "../components/Head.vue";
+
+const numberOne = [1, 2, 3];
+numberOne.forEach((number, index) => {
+  console.log(number + "length:" + index);
+  numberOne.push(number + 3);
+});
 
 const router = useRouter();
 
